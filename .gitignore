@@ -5,6 +5,3 @@ Thumbs.db
 # Editor
 .vscode/
 .idea/
-
-# Assets temporários
-assets/*.txt
