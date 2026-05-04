@@ -16,6 +16,86 @@ body {
   background-color: #110f0f;
   color: #fff;
   overflow-x: hidden;
+  cursor: none; /* replaced by custom cursor */
+}
+
+body.is-loading * {
+  animation-play-state: paused !important;
+}
+
+/* ============================================================
+   SCROLL PROGRESS BAR
+   ============================================================ */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #ffa800, #fa7c0b, #9f8ced);
+  transform-origin: left center;
+  transform: scaleX(0);
+  z-index: 300;
+  pointer-events: none;
+}
+
+/* ============================================================
+   CUSTOM CURSOR
+   ============================================================ */
+#cursor-dot {
+  position: fixed;
+  top: 0; left: 0;
+  width: 8px; height: 8px;
+  background: #ffa800;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
+#cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  width: 36px; height: 36px;
+  border: 1.5px solid rgba(255, 168, 0, 0.7);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
+@media (hover: none) {
+  #cursor-dot, #cursor-ring { display: none; }
+  body { cursor: auto; }
+}
+
+/* ============================================================
+   SPLIT TEXT
+   ============================================================ */
+.split-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.split-inner {
+  display: inline-block;
+}
+
+/* ============================================================
+   NAVBAR SCROLLED STATE
+   ============================================================ */
+#navbar {
+  transition: background 0.3s, padding 0.3s, box-shadow 0.3s;
+}
+
+#navbar.scrolled {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background: rgba(8, 8, 8, 0.95) !important;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.4);
 }
 
 img {
@@ -984,15 +1064,16 @@ a {
 }
 
 /* ============================================================
-   SCROLL REVEAL ANIMATION
+   PROJECT CARD — 3D TILT
    ============================================================ */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
+.project-card {
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
-.reveal.visible {
-  opacity: 1;
-  transform: none;
+/* ============================================================
+   HERO HEADING — prevent layout shift during GSAP animation
+   ============================================================ */
+.hero-heading {
+  overflow: visible;
 }

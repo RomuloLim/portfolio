@@ -9,6 +9,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700&family=Quicksand:wght@500;700&family=Archivo:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
+<body class="is-loading">
+
+  <!-- Scroll progress bar -->
+  <div id="scroll-progress"></div>
+
+  <!-- Custom cursor -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
 <body>
 
   <!-- ==================== NAVBAR ==================== -->
@@ -39,7 +47,7 @@
 
     <div class="hero-content">
       <div class="hero-text">
-        <h1>
+        <h1 class="hero-heading">
           <span class="hero-hey">Hey! </span>
           <span class="hero-welcome">Welcome</span>
         </h1>
@@ -49,8 +57,8 @@
         </p>
       </div>
       <div class="hero-ctas">
-        <a href="#projects" class="btn-outline">See my projects</a>
-        <a href="#contact" class="btn-primary">Contact me!</a>
+        <a href="#projects" class="btn-outline" data-magnetic>See my projects</a>
+        <a href="#contact" class="btn-primary" data-magnetic>Contact me!</a>
       </div>
     </div>
   </section>
@@ -58,7 +66,7 @@
   <!-- ==================== SKILLS ==================== -->
   <section id="skills">
     <div class="section-header">
-      <h2>Stacks and Skills</h2>
+      <h2 data-split-words>Stacks and Skills</h2>
       <p>Discover the tools, technologies and skills I enjoy working with!</p>
     </div>
 
@@ -117,7 +125,7 @@
   <!-- ==================== PROJECTS ==================== -->
   <section id="projects">
     <div class="section-header">
-      <h2>My Github Projects</h2>
+      <h2 data-split-words>My Github Projects</h2>
       <p>Check out some of my GitHub projects that reflect my experience in full-stack development. Here, you'll find various repositories that showcase my work and learning journey.</p>
     </div>
 
@@ -249,6 +257,10 @@
     <a href="#hero" class="btn-go-top">Go to top</a>
   </footer>
 
+  <!-- GSAP + plugins -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
