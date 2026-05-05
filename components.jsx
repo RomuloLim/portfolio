@@ -73,7 +73,9 @@ function StacksSection({ t }) {
   { name: 'Deploy', icon: 'deploy', color: '#34d399' },
   { name: 'Leader', icon: 'leader', color: '#fb923c' },
   { name: 'Scrum', icon: 'scrum', color: '#f87171' },
-  { name: 'Automated Tests', icon: 'tests', color: '#94a3b8' }];
+  { name: 'Automated Tests', icon: 'tests', color: '#94a3b8' },
+  { name: 'Claude Code', icon: 'claude', color: '#f59e0b' },
+  { name: 'Cursor', icon: 'cursor', color: '#6366f1' }];
 
 
   return (
@@ -86,7 +88,7 @@ function StacksSection({ t }) {
         <div className="stack-grid">
           {stacks.map((s) =>
           <div key={s.name} className="stack-pill" style={{ '--c': s.color }}>
-              {window.StackIcons[s.icon]}
+              {window.renderStackIcon(s.icon, s.color)}
               <span>{s.name}</span>
             </div>
           )}
@@ -110,7 +112,8 @@ function About({ t }) {
   const techSkills = [
   'Version management', 'Scrum', 'Team leadership',
   'API development and consumption', 'Azure Cognitive Services',
-  'Azure Cloud Storage', 'AWS S3', 'Azure Video Call'];
+  'Azure Cloud Storage', 'AWS S3', 'Azure Video Call',
+  'AI-assisted development (Claude Code, Cursor)'];
 
 
   return (

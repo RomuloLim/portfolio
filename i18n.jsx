@@ -34,7 +34,8 @@ const translations = {
       tcc: "Read thesis",
       badge_featured: "Featured",
       badge_private: "Private",
-      open_showcase: "View showcase"
+      open_showcase: "View showcase",
+      ai_label: "Developed with AI"
     },
     about: {
       title: "About me",
@@ -90,7 +91,8 @@ const translations = {
       tcc: "Ler TCC",
       badge_featured: "Destaque",
       badge_private: "Privado",
-      open_showcase: "Ver showcase"
+      open_showcase: "Ver showcase",
+      ai_label: "Desenvolvido com IA"
     },
     about: {
       title: "Sobre mim",

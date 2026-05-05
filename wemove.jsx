@@ -10,7 +10,16 @@ const WM_IMAGES = [
   { src: 'assets/wemove-routes.png',     labelPt: 'Gestão de Rotas com Mapa',   labelEn: 'Route Management' },
 ];
 
-const WM_STACK = ['Laravel', 'React', 'PWA', 'MySQL'];
+const WM_STACK    = ['Laravel', 'React', 'PWA', 'MySQL'];
+const WM_AI_TOOLS = ['Claude Code', 'Cursor'];
+
+const WM_CHIP_SLUGS = {
+  'Laravel':    ['laravel',    'ef4444'],
+  'React':      ['react',      '61dafb'],
+  'MySQL':      ['mysql',      '4479a1'],
+  'Claude Code':['anthropic',  'f5a623'],
+  'Cursor':     ['cursor',     'ffffff'],
+};
 
 const WM_YOUTUBE = 'https://www.youtube.com/watch?v=uxMkbDaIDK4';
 const WM_TCC     = 'https://siduece.uece.br/siduece/trabalhoAcademicoPublico.jsf?id=122157';
@@ -87,10 +96,34 @@ function WeMoveModal({ open, onClose, t, lang }) {
             </div>
 
             <div className="wm-stack">
-              {WM_STACK.map(s => <span key={s} className="wm-chip">{s}</span>)}
+              {WM_STACK.map(s => {
+                const si = WM_CHIP_SLUGS[s];
+                return (
+                  <span key={s} className="wm-chip">
+                    {si && window.siChipIcon(si[0], si[1])}
+                    {s}
+                  </span>
+                );
+              })}
             </div>
 
             <p className="wm-desc">{t.wemove.description}</p>
+
+            <div className="wm-ai-tools">
+              <span className="wm-ai-label">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>
+                {t.wemove.ai_label}
+              </span>
+              {WM_AI_TOOLS.map(s => {
+                const si = WM_CHIP_SLUGS[s];
+                return (
+                  <span key={s} className="wm-chip wm-chip-ai">
+                    {si && window.siChipIcon(si[0], 'a5b4fc')}
+                    {s}
+                  </span>
+                );
+              })}
+            </div>
 
             <div className="wm-actions">
               <a href={WM_YOUTUBE} target="_blank" rel="noopener noreferrer" className="wm-btn wm-btn-primary">
@@ -131,7 +164,15 @@ function WeMoveCard({ t, lang }) {
             <h3 className="wm-card-title">We Move</h3>
             <p className="wm-card-sub">{t.wemove.subtitle}</p>
             <div className="wm-card-stack">
-              {WM_STACK.map(s => <span key={s} className="wm-chip wm-chip-sm">{s}</span>)}
+              {WM_STACK.map(s => {
+                const si = WM_CHIP_SLUGS[s];
+                return (
+                  <span key={s} className="wm-chip wm-chip-sm">
+                    {si && window.siChipIcon(si[0], si[1])}
+                    {s}
+                  </span>
+                );
+              })}
             </div>
           </div>
         </div>
