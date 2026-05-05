@@ -14,6 +14,15 @@ function App() {
     document.documentElement.lang = lang;
   }, [lang]);
 
+  // Dismiss page loader once React has mounted
+  useE(() => {
+    const loader = document.getElementById('page-loader');
+    if (!loader) return;
+    loader.classList.add('loader-done');
+    const t = setTimeout(() => loader.remove(), 550);
+    return () => clearTimeout(t);
+  }, []);
+
   // Scroll reveal
   useE(() => {
     const obs = new IntersectionObserver((entries) => {

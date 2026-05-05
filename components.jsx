@@ -87,6 +87,17 @@ function StacksSection({ t }) {
   { name: 'Cursor', icon: 'cursor', color: '#6366f1' }];
 
 
+  const pill = (s, i) => (
+    <div key={i} className="stack-pill" style={{ '--c': s.color }}>
+      {window.renderStackIcon(s.icon, s.color)}
+      <span>{s.name}</span>
+    </div>
+  );
+
+  const half = Math.ceil(stacks.length / 2);
+  const row1 = [...stacks.slice(0, half), ...stacks.slice(0, half)];
+  const row2 = [...stacks.slice(half), ...stacks.slice(half)];
+
   return (
     <section className="section reveal" id="skills">
       <div className="container">
@@ -96,11 +107,19 @@ function StacksSection({ t }) {
         </div>
         <div className="stack-grid">
           {stacks.map((s) =>
-          <div key={s.name} className="stack-pill" style={{ '--c': s.color }}>
+            <div key={s.name} className="stack-pill" style={{ '--c': s.color }}>
               {window.renderStackIcon(s.icon, s.color)}
               <span>{s.name}</span>
             </div>
           )}
+        </div>
+      </div>
+      <div className="marquee-wrapper">
+        <div className="marquee-track">
+          <div className="marquee-inner">{row1.map(pill)}</div>
+        </div>
+        <div className="marquee-track marquee-track--reverse">
+          <div className="marquee-inner">{row2.map(pill)}</div>
         </div>
       </div>
     </section>);

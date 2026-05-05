@@ -309,6 +309,52 @@ a { color: inherit; text-decoration: none; }
   pointer-events: none;
 }
 
+/* ── Page loader ── */
+#page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s var(--ease);
+}
+#page-loader.loader-done {
+  opacity: 0;
+  pointer-events: none;
+}
+.loader-content {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loader-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  animation: loader-pulse 1.4s ease-in-out infinite;
+}
+@keyframes loader-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.55; transform: scale(0.92); }
+}
+.loader-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: #f97316;
+  border-right-color: #a855f7;
+  animation: loader-spin 1s linear infinite;
+}
+@keyframes loader-spin {
+  to { transform: rotate(360deg); }
+}
+
 /* ── Status badge ── */
 .hero-badge {
   display: inline-flex;
@@ -324,6 +370,11 @@ a { color: inherit; text-decoration: none; }
   color: var(--text-2);
   margin-bottom: 28px;
   backdrop-filter: blur(8px);
+  animation: badge-fade-in 0.7s var(--ease) 0.3s both;
+}
+@keyframes badge-fade-in {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 .hero-badge-dot {
   width: 7px; height: 7px;
@@ -453,13 +504,67 @@ a { color: inherit; text-decoration: none; }
 
 #skills { background: var(--bg); }
 
-.stack-grid {
+/* Por padrão: marquee visível, grid oculto */
+.stack-grid { display: none; }
+
+/* ── Marquee ── */
+.marquee-wrapper {
+  margin-top: -20px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 14px;
-  justify-content: center;
-  max-width: 920px;
-  margin: 0 auto;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 10%,
+    #000 90%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 10%,
+    #000 90%,
+    transparent 100%
+  );
+}
+.marquee-wrapper:hover .marquee-inner {
+  animation-play-state: paused;
+}
+.marquee-track {
+  display: flex;
+  width: 100%;
+}
+.marquee-inner {
+  display: flex;
+  gap: 14px;
+  will-change: transform;
+  animation: marquee-left 40s linear infinite;
+}
+.marquee-track--reverse .marquee-inner {
+  animation: marquee-right 35s linear infinite;
+}
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+/* Wide / ultrawide (≥ 1600px): grid visível, marquee oculto */
+@media (min-width: 1600px) {
+  .stack-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+    max-width: 920px;
+    margin: 0 auto;
+  }
+  .marquee-wrapper { display: none; }
 }
 
 .stack-pill {
@@ -526,7 +631,7 @@ a { color: inherit; text-decoration: none; }
   flex-shrink: 0;
   position: relative; z-index: 1;
 }
-.stack-pill span { position: relative; z-index: 1; }
+.stack-pill span { position: relative; z-index: 1; white-space: nowrap; }
 
 /* ============================================
    GITHUB PROJECTS
