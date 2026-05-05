@@ -1,7 +1,7 @@
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "mood": "aurora",
   "atmosphere": "aurora",
-  "cards": "outlined"
+  "cards": "glass"
 }/*EDITMODE-END*/;
 
 const MOODS = {

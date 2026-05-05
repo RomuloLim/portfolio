@@ -34,7 +34,7 @@
         initCursor();
         initHeroEntrance();
         initHeroGlowParallax();
-        initMagneticButtons();
+        // initMagneticButtons();
         initSectionScrollAnimations();
       });
     });
@@ -60,13 +60,14 @@
      CUSTOM CURSOR
      ---------------------------------------------------------- */
   function initCursor() {
-    const dot  = document.getElementById('cursor-dot');
+    const dot = document.getElementById('cursor-dot');
     const ring = document.getElementById('cursor-ring');
     if (!dot || !ring) return;
 
     if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
 
     document.body.style.cursor = 'none';
+    document.documentElement.classList.add('custom-cursor');
 
     let mx = 0, my = 0, rx = 0, ry = 0;
 
@@ -87,13 +88,13 @@
     document.addEventListener('mouseover', (e) => {
       if (e.target.closest(INTERACTIVE)) {
         gsap.to(ring, { scale: 1.9, opacity: 0.5, duration: 0.3 });
-        gsap.to(dot,  { scale: 0.35, duration: 0.3 });
+        gsap.to(dot, { scale: 0.35, duration: 0.3 });
       }
     });
     document.addEventListener('mouseout', (e) => {
       if (e.target.closest(INTERACTIVE)) {
         gsap.to(ring, { scale: 1, opacity: 1, duration: 0.3 });
-        gsap.to(dot,  { scale: 1, duration: 0.3 });
+        gsap.to(dot, { scale: 1, duration: 0.3 });
       }
     });
   }
@@ -102,19 +103,19 @@
      HERO ENTRANCE
      ---------------------------------------------------------- */
   function initHeroEntrance() {
-    const header  = document.querySelector('.header');
-    const heyEl   = document.querySelector('.hero-hey');
-    const accEl   = document.querySelector('.hero .accent');
-    const heroP   = document.querySelector('.hero > .container > p, .hero p');
+    const header = document.querySelector('.header');
+    const heyEl = document.querySelector('.hero-hey');
+    const accEl = document.querySelector('.hero .accent');
+    const heroP = document.querySelector('.hero > .container > p, .hero p');
     const heroAct = document.querySelector('.hero-actions');
 
     if (!header) return;
 
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    tl.fromTo(header,  { y: -70, opacity: 0 }, { y: 0, opacity: 1, duration: 0.65 });
-    if (heyEl)   tl.fromTo(heyEl,   { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55 }, '-=0.2');
-    if (accEl)   tl.fromTo(accEl,   { opacity: 0, x:  50 }, { opacity: 1, x: 0, duration: 0.55 }, '-=0.4');
-    if (heroP)   tl.fromTo(heroP,   { opacity: 0, y:  24 }, { opacity: 1, y: 0, duration: 0.5  }, '-=0.2');
+    tl.fromTo(header, { y: -70, opacity: 0 }, { y: 0, opacity: 1, duration: 0.65 });
+    if (heyEl) tl.fromTo(heyEl, { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55 }, '-=0.2');
+    if (accEl) tl.fromTo(accEl, { opacity: 0, x: 50 }, { opacity: 1, x: 0, duration: 0.55 }, '-=0.4');
+    if (heroP) tl.fromTo(heroP, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5 }, '-=0.2');
     if (heroAct) tl.fromTo(heroAct.children,
       { opacity: 0, y: 18 },
       { opacity: 1, y: 0, stagger: 0.1, duration: 0.45 },
@@ -130,10 +131,10 @@
     if (!g1 && !g2) return;
 
     window.addEventListener('mousemove', (e) => {
-      const xP = (e.clientX / window.innerWidth  - 0.5) * 2;
+      const xP = (e.clientX / window.innerWidth - 0.5) * 2;
       const yP = (e.clientY / window.innerHeight - 0.5) * 2;
       if (g1) gsap.to(g1, { x: xP * -28, y: yP * -18, duration: 1.4, ease: 'power1.out', overwrite: 'auto' });
-      if (g2) gsap.to(g2, { x: xP *  22, y: yP *  18, duration: 1.6, ease: 'power1.out', overwrite: 'auto' });
+      if (g2) gsap.to(g2, { x: xP * 22, y: yP * 18, duration: 1.6, ease: 'power1.out', overwrite: 'auto' });
     }, { passive: true });
   }
 
@@ -145,8 +146,8 @@
       btn.setAttribute('data-magnetic', '');
       btn.addEventListener('mousemove', (e) => {
         const r = btn.getBoundingClientRect();
-        const dx = (e.clientX - r.left - r.width  / 2) * 0.32;
-        const dy = (e.clientY - r.top  - r.height / 2) * 0.32;
+        const dx = (e.clientX - r.left - r.width / 2) * 0.32;
+        const dy = (e.clientY - r.top - r.height / 2) * 0.32;
         gsap.to(btn, { x: dx, y: dy, duration: 0.3, ease: 'power2.out' });
       });
       btn.addEventListener('mouseleave', () => {
@@ -164,16 +165,20 @@
     document.querySelectorAll('.section-head h2').forEach((h2) => {
       gsap.fromTo(h2,
         { opacity: 0, y: 28 },
-        { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out',
-          scrollTrigger: { trigger: h2, start: 'top 88%', once: true } }
+        {
+          opacity: 1, y: 0, duration: 0.65, ease: 'power3.out',
+          scrollTrigger: { trigger: h2, start: 'top 88%', once: true }
+        }
       );
     });
 
     document.querySelectorAll('.section-head p').forEach((p) => {
       gsap.fromTo(p,
         { opacity: 0, y: 18 },
-        { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out', delay: 0.1,
-          scrollTrigger: { trigger: p, start: 'top 90%', once: true } }
+        {
+          opacity: 1, y: 0, duration: 0.55, ease: 'power2.out', delay: 0.1,
+          scrollTrigger: { trigger: p, start: 'top 90%', once: true }
+        }
       );
     });
 
@@ -182,10 +187,12 @@
     if (pills.length) {
       gsap.fromTo(pills,
         { opacity: 0, y: 28, scale: 0.88 },
-        { opacity: 1, y: 0, scale: 1,
+        {
+          opacity: 1, y: 0, scale: 1,
           stagger: { amount: 0.5, from: 'start' },
           duration: 0.5, ease: 'back.out(1.7)',
-          scrollTrigger: { trigger: '.stack-grid', start: 'top 84%', once: true } }
+          scrollTrigger: { trigger: '.stack-grid', start: 'top 84%', once: true }
+        }
       );
     }
 
@@ -197,8 +204,10 @@
     if (avatar) {
       gsap.fromTo(avatar,
         { opacity: 0, x: -40 },
-        { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out',
-          scrollTrigger: { trigger: avatar, start: 'top 85%', once: true } }
+        {
+          opacity: 1, x: 0, duration: 0.7, ease: 'power3.out',
+          scrollTrigger: { trigger: avatar, start: 'top 85%', once: true }
+        }
       );
     }
 
@@ -206,8 +215,10 @@
     if (aboutText) {
       gsap.fromTo(aboutText.children,
         { opacity: 0, x: 40 },
-        { opacity: 1, x: 0, stagger: 0.1, duration: 0.65, ease: 'power3.out',
-          scrollTrigger: { trigger: aboutText, start: 'top 86%', once: true } }
+        {
+          opacity: 1, x: 0, stagger: 0.1, duration: 0.65, ease: 'power3.out',
+          scrollTrigger: { trigger: aboutText, start: 'top 86%', once: true }
+        }
       );
     }
 
@@ -215,8 +226,10 @@
     if (profileBlock) {
       gsap.fromTo(profileBlock.children,
         { opacity: 0, y: 22 },
-        { opacity: 1, y: 0, stagger: 0.08, duration: 0.55, ease: 'power2.out',
-          scrollTrigger: { trigger: profileBlock, start: 'top 84%', once: true } }
+        {
+          opacity: 1, y: 0, stagger: 0.08, duration: 0.55, ease: 'power2.out',
+          scrollTrigger: { trigger: profileBlock, start: 'top 84%', once: true }
+        }
       );
     }
 
@@ -224,8 +237,10 @@
     if (skillsCard) {
       gsap.fromTo(skillsCard,
         { opacity: 0, x: 50 },
-        { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out',
-          scrollTrigger: { trigger: skillsCard, start: 'top 84%', once: true } }
+        {
+          opacity: 1, x: 0, duration: 0.7, ease: 'power3.out',
+          scrollTrigger: { trigger: skillsCard, start: 'top 84%', once: true }
+        }
       );
     }
 
@@ -234,14 +249,18 @@
     if (contactCard) {
       gsap.fromTo(contactCard,
         { opacity: 0, y: 56, scale: 0.97 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'power3.out',
-          scrollTrigger: { trigger: contactCard, start: 'top 86%', once: true } }
+        {
+          opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'power3.out',
+          scrollTrigger: { trigger: contactCard, start: 'top 86%', once: true }
+        }
       );
       gsap.fromTo(
         contactCard.querySelectorAll('input, textarea, .contact-submit'),
         { opacity: 0, y: 18 },
-        { opacity: 1, y: 0, stagger: 0.07, duration: 0.5, ease: 'power2.out', delay: 0.2,
-          scrollTrigger: { trigger: contactCard, start: 'top 82%', once: true } }
+        {
+          opacity: 1, y: 0, stagger: 0.07, duration: 0.5, ease: 'power2.out', delay: 0.2,
+          scrollTrigger: { trigger: contactCard, start: 'top 82%', once: true }
+        }
       );
     }
   }
@@ -261,18 +280,20 @@
 
       gsap.fromTo(cards,
         { opacity: 0, y: 48, scale: 0.94 },
-        { opacity: 1, y: 0, scale: 1,
+        {
+          opacity: 1, y: 0, scale: 1,
           stagger: { amount: 0.45 },
           duration: 0.55, ease: 'power3.out',
-          scrollTrigger: { trigger: '.projects-grid', start: 'top 84%', once: true } }
+          scrollTrigger: { trigger: '.projects-grid', start: 'top 84%', once: true }
+        }
       );
 
       cards.forEach((card) => {
         card.style.transformStyle = 'preserve-3d';
         card.addEventListener('mousemove', (e) => {
           const r = card.getBoundingClientRect();
-          const xR = (e.clientX - r.left) / r.width  - 0.5;
-          const yR = (e.clientY - r.top)  / r.height - 0.5;
+          const xR = (e.clientX - r.left) / r.width - 0.5;
+          const yR = (e.clientY - r.top) / r.height - 0.5;
           gsap.to(card, {
             rotateX: -yR * 7, rotateY: xR * 7,
             transformPerspective: 900,
