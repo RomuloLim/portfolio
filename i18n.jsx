@@ -18,13 +18,23 @@ const translations = {
       subtitle: "Discover the tools, technologies and skills I enjoy working with!"
     },
     projects: {
-      title: "My Github Projects",
-      subtitle: "Check out some of my GitHub projects that reflect my experience in full-stack development. Here, you'll find various repositories that showcase my work and learning journey.",
+      title: "My Projects",
+      subtitle: "Check out some of my projects that reflect my experience in full-stack development.",
       loading: "Loading projects from GitHub...",
       empty: "No projects with [PTF] tag found yet.",
       error: "Couldn't load GitHub projects right now.",
       view: "View on GitHub",
-      stars: "stars"
+      stars: "stars",
+      opensource: "Open Source"
+    },
+    wemove: {
+      subtitle: "University Transport Management",
+      description: "Integrated platform for managing intermunicipal university transport. Centralizes students, routes, and drivers in a web admin panel; provides students a PWA with a digital ID card and route tracking; and enables drivers to validate boarding via QR Code.",
+      watch: "Watch presentation",
+      tcc: "Read thesis",
+      badge_featured: "Featured",
+      badge_private: "Private",
+      open_showcase: "View showcase"
     },
     about: {
       title: "About me",
@@ -64,13 +74,23 @@ const translations = {
       subtitle: "Descubra as ferramentas, tecnologias e habilidades com as quais gosto de trabalhar!"
     },
     projects: {
-      title: "Meus Projetos no Github",
-      subtitle: "Confira alguns dos meus projetos no GitHub que refletem minha experiência em desenvolvimento full-stack. Aqui você encontrará repositórios que mostram meu trabalho e minha jornada de aprendizado.",
+      title: "Meus Projetos",
+      subtitle: "Confira alguns dos meus projetos que refletem minha experiência em desenvolvimento full-stack.",
       loading: "Carregando projetos do GitHub...",
       empty: "Nenhum projeto com a tag [PTF] encontrado.",
       error: "Não foi possível carregar os projetos do GitHub agora.",
       view: "Ver no GitHub",
-      stars: "estrelas"
+      stars: "estrelas",
+      opensource: "Open Source"
+    },
+    wemove: {
+      subtitle: "Gestão de Transporte Universitário",
+      description: "Plataforma integrada para gerenciamento do transporte universitário intermunicipal. Centraliza alunos, rotas e motoristas em um painel web; oferece ao estudante um app (PWA) com carteirinha virtual e visualização de rotas; e permite ao motorista validar embarques por QR Code.",
+      watch: "Ver apresentação",
+      tcc: "Ler TCC",
+      badge_featured: "Destaque",
+      badge_private: "Privado",
+      open_showcase: "Ver showcase"
     },
     about: {
       title: "Sobre mim",

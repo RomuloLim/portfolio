@@ -1,11 +1,3 @@
-// ============================================
-// TWEAKS — three expressive controls that reshape feel
-//
-// 1. Mood preset — swaps entire palette + accent (Aurora / Sunset / Mono / Neon)
-// 2. Hero atmosphere — how dense/quiet the hero feels (calm / aurora / dense)
-// 3. Card personality — outlined / glass / brutalist
-// ============================================
-
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "mood": "aurora",
   "atmosphere": "aurora",

@@ -34,7 +34,7 @@ function App() {
       <Header t={t} lang={lang} setLang={setLang}/>
       <Hero t={t}/>
       <StacksSection t={t}/>
-      <Projects t={t}/>
+      <Projects t={t} lang={lang}/>
       <About t={t}/>
       <Contact t={t}/>
       <Footer t={t}/>

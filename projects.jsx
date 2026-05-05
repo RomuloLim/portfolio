@@ -91,7 +91,7 @@ function ProjectCard({ repo, t }) {
   );
 }
 
-function Projects({ t }) {
+function Projects({ t, lang }) {
   const [state, setState] = useStateGH({ status: 'loading', repos: [] });
 
   useEffectGH(() => {
@@ -126,6 +126,8 @@ function Projects({ t }) {
           <p>{t.projects.subtitle}</p>
         </div>
         <div className="projects-grid">
+          {window.WeMoveCard && <window.WeMoveCard t={t} lang={lang}/>}
+          <div className="projects-divider"><span>{t.projects.opensource}</span></div>
           {state.status === 'loading' && (
             <div className="projects-loading">
               <div className="spinner"/>
