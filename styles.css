@@ -765,14 +765,22 @@ a { color: inherit; text-decoration: none; }
    FOOTER
    ============================================ */
 
+.heart {
+  width: 18px; height: 18px;
+}
+
 .footer {
+  display: flex;
+  gap: 6px;
   padding: 32px 24px;
+  justify-content: center;
   text-align: center;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text-3);
   border-top: 1px solid var(--border-soft);
 }
-.footer .heart { color: #ef4444; }
+
+.footer .heart { color: #ef4444; display: inline; }
 .footer a { color: var(--text-2); font-weight: 500; }
 .footer a:hover { color: var(--orange); }
 

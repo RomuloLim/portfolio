@@ -225,7 +225,7 @@ function Contact({ t }) {
 function Footer({ t }) {
   return (
     <footer className="footer">
-      {t.footer.made} <span className="heart">❤</span> {t.footer.by} <a href="https://github.com/RomuloLim" target="_blank" rel="noopener">RomuloLim</a>
+      {t.footer.made} <img className="heart" src="assets/heart.png" alt="❤" /> {t.footer.by} <a href="https://github.com/RomuloLim" target="_blank" rel="noopener">RomuloLim</a>
     </footer>);
 
 }
