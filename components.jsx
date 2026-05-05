@@ -127,7 +127,7 @@ function About({ t }) {
           <div className="about-text">
             <h2>{t.about.title}</h2>
             <p>{t.about.bio}</p>
-            <a href="#" className="btn btn-outline">{t.about.download_cv}</a>
+            <a href="https://github.com/RomuloLim" target="_blank" rel="noopener" className="btn btn-outline">{t.about.download_cv}</a>
           </div>
         </div>
 
@@ -145,7 +145,7 @@ function About({ t }) {
                 </ul>
               </li>
             </ul>
-            <a href="#" className="btn btn-outline">{t.about.more_cv}</a>
+            <a href="https://github.com/RomuloLim" target="_blank" rel="noopener" className="btn btn-outline">{t.about.more_cv}</a>
           </div>
 
           <SkillsCard t={t} skills={skills} />

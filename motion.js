@@ -24,9 +24,12 @@
   }
 
   onReady(function () {
-    /* Small delay so React finishes painting */
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
+        /* Unlock all .reveal sections immediately so GSAP reads correct
+           computed values and CSS opacity:0 doesn't bleed into children */
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+
         initScrollProgress();
         initCursor();
         initHeroEntrance();
@@ -108,13 +111,14 @@
     if (!header) return;
 
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    tl.from(header, { y: -70, opacity: 0, duration: 0.65 });
-    if (heyEl)   tl.from(heyEl,   { opacity: 0, x: -50, duration: 0.55 }, '-=0.2');
-    if (accEl)   tl.from(accEl,   { opacity: 0, x:  50, duration: 0.55 }, '-=0.4');
-    if (heroP)   tl.from(heroP,   { opacity: 0, y:  24, duration: 0.5  }, '-=0.2');
-    if (heroAct) tl.from(heroAct.children, {
-      opacity: 0, y: 18, stagger: 0.1, duration: 0.45,
-    }, '-=0.15');
+    tl.fromTo(header,  { y: -70, opacity: 0 }, { y: 0, opacity: 1, duration: 0.65 });
+    if (heyEl)   tl.fromTo(heyEl,   { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55 }, '-=0.2');
+    if (accEl)   tl.fromTo(accEl,   { opacity: 0, x:  50 }, { opacity: 1, x: 0, duration: 0.55 }, '-=0.4');
+    if (heroP)   tl.fromTo(heroP,   { opacity: 0, y:  24 }, { opacity: 1, y: 0, duration: 0.5  }, '-=0.2');
+    if (heroAct) tl.fromTo(heroAct.children,
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, stagger: 0.1, duration: 0.45 },
+      '-=0.15');
   }
 
   /* ----------------------------------------------------------
@@ -158,28 +162,31 @@
 
     /* Section headers */
     document.querySelectorAll('.section-head h2').forEach((h2) => {
-      gsap.from(h2, {
-        scrollTrigger: { trigger: h2, start: 'top 88%', once: true },
-        opacity: 0, y: 28, duration: 0.65, ease: 'power3.out',
-      });
+      gsap.fromTo(h2,
+        { opacity: 0, y: 28 },
+        { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out',
+          scrollTrigger: { trigger: h2, start: 'top 88%', once: true } }
+      );
     });
 
     document.querySelectorAll('.section-head p').forEach((p) => {
-      gsap.from(p, {
-        scrollTrigger: { trigger: p, start: 'top 90%', once: true },
-        opacity: 0, y: 18, duration: 0.55, ease: 'power2.out', delay: 0.1,
-      });
+      gsap.fromTo(p,
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out', delay: 0.1,
+          scrollTrigger: { trigger: p, start: 'top 90%', once: true } }
+      );
     });
 
     /* Stack pills staggered */
     const pills = document.querySelectorAll('.stack-pill');
     if (pills.length) {
-      gsap.from(pills, {
-        scrollTrigger: { trigger: '.stack-grid', start: 'top 84%', once: true },
-        opacity: 0, y: 28, scale: 0.88,
-        stagger: { amount: 0.5, from: 'start' },
-        duration: 0.5, ease: 'back.out(1.7)',
-      });
+      gsap.fromTo(pills,
+        { opacity: 0, y: 28, scale: 0.88 },
+        { opacity: 1, y: 0, scale: 1,
+          stagger: { amount: 0.5, from: 'start' },
+          duration: 0.5, ease: 'back.out(1.7)',
+          scrollTrigger: { trigger: '.stack-grid', start: 'top 84%', once: true } }
+      );
     }
 
     /* Project cards — enhanced tilt on hover */
@@ -188,47 +195,54 @@
     /* About section */
     const avatar = document.querySelector('.avatar');
     if (avatar) {
-      gsap.from(avatar, {
-        scrollTrigger: { trigger: avatar, start: 'top 85%', once: true },
-        opacity: 0, x: -40, duration: 0.7, ease: 'power3.out',
-      });
+      gsap.fromTo(avatar,
+        { opacity: 0, x: -40 },
+        { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out',
+          scrollTrigger: { trigger: avatar, start: 'top 85%', once: true } }
+      );
     }
 
     const aboutText = document.querySelector('.about-text');
     if (aboutText) {
-      gsap.from(aboutText.children, {
-        scrollTrigger: { trigger: aboutText, start: 'top 86%', once: true },
-        opacity: 0, x: 40, stagger: 0.1, duration: 0.65, ease: 'power3.out',
-      });
+      gsap.fromTo(aboutText.children,
+        { opacity: 0, x: 40 },
+        { opacity: 1, x: 0, stagger: 0.1, duration: 0.65, ease: 'power3.out',
+          scrollTrigger: { trigger: aboutText, start: 'top 86%', once: true } }
+      );
     }
 
     const profileBlock = document.querySelector('.profile-block');
     if (profileBlock) {
-      gsap.from(profileBlock.children, {
-        scrollTrigger: { trigger: profileBlock, start: 'top 84%', once: true },
-        opacity: 0, y: 22, stagger: 0.08, duration: 0.55, ease: 'power2.out',
-      });
+      gsap.fromTo(profileBlock.children,
+        { opacity: 0, y: 22 },
+        { opacity: 1, y: 0, stagger: 0.08, duration: 0.55, ease: 'power2.out',
+          scrollTrigger: { trigger: profileBlock, start: 'top 84%', once: true } }
+      );
     }
 
     const skillsCard = document.querySelector('.skills-card');
     if (skillsCard) {
-      gsap.from(skillsCard, {
-        scrollTrigger: { trigger: skillsCard, start: 'top 84%', once: true },
-        opacity: 0, x: 50, duration: 0.7, ease: 'power3.out',
-      });
+      gsap.fromTo(skillsCard,
+        { opacity: 0, x: 50 },
+        { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out',
+          scrollTrigger: { trigger: skillsCard, start: 'top 84%', once: true } }
+      );
     }
 
     /* Contact card */
     const contactCard = document.querySelector('.contact-card');
     if (contactCard) {
-      gsap.from(contactCard, {
-        scrollTrigger: { trigger: contactCard, start: 'top 86%', once: true },
-        opacity: 0, y: 56, scale: 0.97, duration: 0.8, ease: 'power3.out',
-      });
-      gsap.from(contactCard.querySelectorAll('input, textarea, .contact-submit'), {
-        scrollTrigger: { trigger: contactCard, start: 'top 82%', once: true },
-        opacity: 0, y: 18, stagger: 0.07, duration: 0.5, ease: 'power2.out', delay: 0.2,
-      });
+      gsap.fromTo(contactCard,
+        { opacity: 0, y: 56, scale: 0.97 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'power3.out',
+          scrollTrigger: { trigger: contactCard, start: 'top 86%', once: true } }
+      );
+      gsap.fromTo(
+        contactCard.querySelectorAll('input, textarea, .contact-submit'),
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, stagger: 0.07, duration: 0.5, ease: 'power2.out', delay: 0.2,
+          scrollTrigger: { trigger: contactCard, start: 'top 82%', once: true } }
+      );
     }
   }
 
@@ -236,7 +250,6 @@
      PROJECT CARD 3D TILT + GSAP STAGGER (after API loads)
      ---------------------------------------------------------- */
   function initProjectCardEffects() {
-    /* Cards may load asynchronously; poll until they appear */
     let attempts = 0;
     const tryInit = () => {
       const cards = document.querySelectorAll('.project-card');
@@ -246,12 +259,13 @@
       }
       if (!cards.length) return;
 
-      gsap.from(cards, {
-        scrollTrigger: { trigger: '.projects-grid', start: 'top 84%', once: true },
-        opacity: 0, y: 48, scale: 0.94,
-        stagger: { amount: 0.45 },
-        duration: 0.55, ease: 'power3.out',
-      });
+      gsap.fromTo(cards,
+        { opacity: 0, y: 48, scale: 0.94 },
+        { opacity: 1, y: 0, scale: 1,
+          stagger: { amount: 0.45 },
+          duration: 0.55, ease: 'power3.out',
+          scrollTrigger: { trigger: '.projects-grid', start: 'top 84%', once: true } }
+      );
 
       cards.forEach((card) => {
         card.style.transformStyle = 'preserve-3d';
