@@ -83,6 +83,27 @@
       requestAnimationFrame(lerp);
     })();
 
+    // Dot squeeze on press
+    document.addEventListener('mousedown', () => {
+      gsap.to(dot, { scale: 0.5, duration: 0.1, ease: 'power2.in' });
+    });
+    document.addEventListener('mouseup', () => {
+      gsap.to(dot, { scale: 1, duration: 0.2, ease: 'back.out(2)' });
+    });
+
+    // Ripple on click
+    document.addEventListener('click', (e) => {
+      const ripple = document.createElement('div');
+      ripple.className = 'cursor-ripple';
+      ripple.style.left = e.clientX + 'px';
+      ripple.style.top  = e.clientY + 'px';
+      document.body.appendChild(ripple);
+      gsap.fromTo(ripple,
+        { scale: 0, opacity: 0.7 },
+        { scale: 3, opacity: 0, duration: 0.55, ease: 'power2.out', onComplete: () => ripple.remove() }
+      );
+    });
+
     const INTERACTIVE = 'a, button, [data-magnetic], .stack-pill, .project-card, .btn, .btn-contact, .lang-toggle button';
 
     document.addEventListener('mouseover', (e) => {

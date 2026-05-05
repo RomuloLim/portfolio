@@ -60,7 +60,7 @@ const ProjectIcons = {
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M10 18h4M9 6l-1 1 1 1M15 6l1 1-1 1"/></svg>
   ),
   api: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg>
+    <img src="assets/icons/api-icon.svg" width="33" height="22" alt="API" aria-hidden="true" style={{flexShrink:0, position:'relative', zIndex:1}}/>
   )
 };
 

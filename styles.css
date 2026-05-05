@@ -1060,6 +1060,16 @@ body[data-atmosphere] .hero { /* keeps spec in tweaks if used */ }
   #cursor-dot, #cursor-ring { display: none; }
 }
 
+.cursor-ripple {
+  position: fixed;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid var(--orange);
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+  z-index: 9997;
+}
+
 /* Split-word animation helper */
 .split-word {
   display: inline-block;
