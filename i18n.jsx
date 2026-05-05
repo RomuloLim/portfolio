@@ -11,7 +11,9 @@ const translations = {
       intro_name: "Rômulo Lima",
       intro_post: ", Fullstack web developer. Turning ideas into real life projects to my calling.",
       see_projects: "See my projects",
-      contact_me: "Contact me"
+      contact_me: "Contact me",
+      badge: "Available for new projects",
+      scroll: "Scroll"
     },
     skills: {
       title: "Stacks and Skills",
@@ -68,7 +70,9 @@ const translations = {
       intro_name: "Rômulo Lima",
       intro_post: ", desenvolvedor web fullstack. Transformando ideias em projetos reais para a minha jornada.",
       see_projects: "Ver projetos",
-      contact_me: "Fale comigo"
+      contact_me: "Fale comigo",
+      badge: "Disponível para novos projetos",
+      scroll: "Scroll"
     },
     skills: {
       title: "Stacks e Skills",

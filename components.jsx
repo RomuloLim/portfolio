@@ -42,6 +42,10 @@ function Hero({ t }) {
       <div className="hero-glow g2"/>
       <div className="hero-glow g3"/>
       <div className="container hero-inner">
+        <div className="hero-badge">
+          <span className="hero-badge-dot"/>
+          {t.hero.badge}
+        </div>
         <h1 style={{ height: "auto", width: "auto" }}>
           <span className="hero-hey">{t.hero.hey}</span>
           <span className="accent">{t.hero.welcome}</span>
@@ -55,6 +59,11 @@ function Hero({ t }) {
           <a href="#projects" className="btn btn-outline">{t.hero.see_projects}</a>
           <a href="#contact" className="btn btn-primary">{t.hero.contact_me}</a>
         </div>
+      </div>
+      <div className="hero-bottom-fade" aria-hidden="true"/>
+      <div className="hero-scroll" aria-hidden="true">
+        <span className="hero-scroll-text">{t.hero.scroll}</span>
+        <div className="hero-scroll-line"/>
       </div>
     </section>);
 
